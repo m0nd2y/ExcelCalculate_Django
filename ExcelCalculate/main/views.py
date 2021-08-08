@@ -2,6 +2,7 @@ from django.http.response import HttpResponse
 from django.shortcuts import redirect, render
 from random import *
 from .models import *
+from sendEmail.views import *
 
 # Create your views here.
 def index(request):
