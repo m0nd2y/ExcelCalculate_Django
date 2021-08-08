@@ -1,4 +1,5 @@
 from django.shortcuts import redirect, render
+from .models import *
 
 # Create your views here.
 def index(request):
@@ -12,7 +13,7 @@ def join(request):
     name = request.POST['signupName']
     email = request.POST['signupEmail']
     pw = request.POST['signupPW']
-    user = User(username = name, user_email = email, user_password = pw)
+    user = User(user_name = name, user_email = email, user_password = pw)
     user.save()
     return redirect('main_verifyCode')
 
