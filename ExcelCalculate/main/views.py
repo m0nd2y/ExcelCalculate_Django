@@ -38,6 +38,10 @@ def signin(request):
 def login(request) :
     loginEmail = request.POST['loginEmail']
     loginPW = request.POST['loginPW']
+    try :
+        user = User.objects.get(user_email = loginEmail)
+    except :
+        return redirect('main_loginFail')
     user = User.objects.get(user_email = loginEmail)
     if user.user_password == loginPW:
         request.session['user_name'] = user.user_name
