@@ -36,6 +36,16 @@ def verifyCode(request):
     return render(request, 'verifyCode.html')
 
 def verify(request):
+    user_code = request.POST['verifyCode']
+    cookie_code = request.COOKIES.get('code')
+    if user_code == cookie_code :
+        user = User.objects.get(id = request.COOKIES.get('user_id'))
+        user.user_validate = 1
+        user.save()
+        response = redirect('main_index')
+        response.delete_cookie('code')
+        response.delete_cookie('user_id')
+
     return redirect('main_index')
 
 def result(request):
