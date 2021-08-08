@@ -36,8 +36,10 @@ def signin(request):
     return render(request, 'signin.html')
 
 def login(request) :
-    loginEmail = request.POST.get('loginEmail','')
+    loginEmail = request.POST['loginEmail']
+    print("loginEmail", loginEmail)
     loginPW = request.POST['loginPW']
+    print("loginPW", loginPW)
     try :
         user = User.objects.get(user_email = loginEmail)
     except :
