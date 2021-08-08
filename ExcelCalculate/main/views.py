@@ -49,6 +49,9 @@ def login(request) :
         return redirect('main_index')
     else :
         return redirect('main_loginFail')
+    
+def loginFail(request) :
+    return render(request, 'loginFail.html')
 
 def logout(request) :
     del request.session['user_name']
