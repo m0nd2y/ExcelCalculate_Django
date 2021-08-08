@@ -26,5 +26,5 @@ def calculate(request) :
         print("# grade: " , key)
         print("min:",grade_calculate_dic[key]['min'],end='')
         print("/ max:",grade_calculate_dic[key]['max'],end='')
-        print("/ avg:",grade_calculate_dic[key]['avg'],end='')
+        print("/ avg:",grade_calculate_dic[key]['avg'],end='\n\n')
     return HttpResponse("calculate, calculate function!")
