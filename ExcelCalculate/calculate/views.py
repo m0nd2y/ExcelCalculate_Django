@@ -48,4 +48,4 @@ def calculate(request) :
         grade_calculate_dic_to_session[int(key)]['min'] = float(grade_calculate_dic[key]['min'])
     request.session['grade_calculate_dic'] = grade_calculate_dic_to_session
     request.session['email_domain_dic'] = email_domain_dic
-    return redirect('/result')    
+    return redirect('/result')

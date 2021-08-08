@@ -75,6 +75,6 @@ def verify(request):
 
 def result(request):
     if 'user_name' in request.session.keys() :
-        return render(request, 'main/result.html')
+        return render(request, 'result.html')
     else :
         return redirect('main_signin')
