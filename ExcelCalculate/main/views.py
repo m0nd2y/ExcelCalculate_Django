@@ -45,6 +45,10 @@ def verify(request):
         response = redirect('main_index')
         response.delete_cookie('code')
         response.delete_cookie('user_id')
+        response.set_cookie('user', user)
+        return response
+    else:
+        redirect('main_verifyCode')
 
     return redirect('main_index')
 
