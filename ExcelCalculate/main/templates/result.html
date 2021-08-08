@@ -50,6 +50,9 @@
                 {% endfor %}
                 <br>
                 <h4> - 이메일별 주소 도메인 인원 </h4>
+                {% for key,value in email_dimail_dic.items %}
+                    <p><strong>{{ key }} : </strong>{{ value }}명</p>
+                {% endfor %}
             </div>
             <hr>
         </div>
