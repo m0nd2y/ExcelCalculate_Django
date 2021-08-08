@@ -75,6 +75,11 @@ def verify(request):
 
 def result(request):
     if 'user_name' in request.session.keys() :
-        return render(request, 'result.html')
+        content = {}
+        content['grade_calculate_dic'] = request.session['grade_calculate_dic']
+        content['email_domain_dic'] = request.session['email_domain_dic']
+        del request.session['grade_calculate_dic']
+        del request.session['email_domain_dic']
+        return render(request, 'result.html', content)
     else :
         return redirect('main_signin')
