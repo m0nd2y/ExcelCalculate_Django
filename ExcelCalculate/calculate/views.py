@@ -1,3 +1,4 @@
+from math import e
 from django.http.response import HttpResponse
 from django.shortcuts import render
 import pandas as pd
@@ -8,7 +9,7 @@ def calculate(request) :
     df = pd.read_excel(file, sheet_name='Sheet1', header=0)
     grade_dic = {}
     total_row_num = len(df.index)
-    for i in range(df.index) :
+    for i in range(total_row_num) :
         data = df.loc[i]
         if not data['grade'] in grade_dic.keys():
             grade_dic[data['grade']] = [data['value']]
@@ -27,4 +28,15 @@ def calculate(request) :
         print("min:",grade_calculate_dic[key]['min'],end='')
         print("/ max:",grade_calculate_dic[key]['max'],end='')
         print("/ avg:",grade_calculate_dic[key]['avg'],end='\n\n')
+    email_domain_dic = {}
+    for i in range(total_row_num) :
+        data = df.loc[i]
+        email_domain = (data['email'].split("@"))[1]
+        if not email_domain in email_domain_dic.keys():
+            email_domain_dic[email_domain] = 1
+        else :
+            email_domain_dic[email_domain] += 1
+    print("## EMAIL 도메일별 사용 인원")
+    for key in email_domain_dic.keys() :
+        print("#", key,": ", email_domain_dic[key],"명")
     return HttpResponse("calculate, calculate function!")
