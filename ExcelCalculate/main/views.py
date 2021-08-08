@@ -1,3 +1,4 @@
+from django.http.response import HttpResponse
 from django.shortcuts import redirect, render
 from random import *
 from .models import *
@@ -19,6 +20,12 @@ def join(request):
     response = redirect('main_verifyCode')
     response.set_cookie('code',code)
     response.set_cookie('user_id', user.id)
+    # 이메일 발송 함수 호출
+    send_result = send(email, code)
+    if send_result :
+        return response
+    else :
+        return HttpResponse("이메일 발송헤 실패했습니다.")
     return response
 
 def signin(request):
