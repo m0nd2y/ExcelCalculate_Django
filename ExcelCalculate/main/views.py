@@ -14,7 +14,7 @@ def join(request):
     email = request.POST['signupEmail']
     pw = request.POST['signupPW']
     print("name = " + str(name) + "email = " + str(email) + "pw = " + str(pw))
-    user = User(user_name = name, user_email = email, user_password = pw)
+    user = User(user_name = name,  user_password = pw, user_email = email)
     user.save()
     return redirect('main_verifyCode')
 
