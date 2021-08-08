@@ -1,8 +1,21 @@
 from django.http.response import HttpResponse
 from django.shortcuts import render
+import pandas as pd
 
 # Create your views here.
 def calculate(request) :
     file = request.FILES['fileInput']
-    print(file)
+    df = pd.read_excel(file, sheet_name='Sheet1', header=0)
+    grade_dic = {}
+    total_row_num = len(df.index)
+    for i in range(df.index) :
+        data = df.loc[i]
+        if not data['grade'] in grade_dic.keys():
+            grade_dic[data['grade']] = [data['value']]
+        else :
+            grade_dic[data['grade']].append(data['value'])
+    grade_calculate_dic = {}
+    for key in grade_dic.keys():
+        grade_calculate_dic[key] = {}
+        grade_calculate_dic[key]['min'] = min(grade_doc[key])
     return HttpResponse("calculate, calculate function!")
