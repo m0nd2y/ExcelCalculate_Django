@@ -32,6 +32,18 @@ def join(request):
 def signin(request):
     return render(request, 'signin.html')
 
+def login(request) :
+    loginEmail = request.POST['loginEmail']
+    loginPW = request.POST['loginPW']
+    user = User.objects.get(user_email = loginEmail)
+    if user.user_password == loginPW:
+        request.session['user_name'] = user.user_name
+        request.session['user_email'] = user.user_email
+        return redirect('main_index')
+    else :
+        return redirect('main_loginFail')
+
+
 def verifyCode(request):
     return render(request, 'verifyCode.html')
 
