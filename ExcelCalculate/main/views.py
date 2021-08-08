@@ -70,4 +70,7 @@ def verify(request):
     return redirect('main_index')
 
 def result(request):
-    return render(request, 'result.html')
+    if 'user_name' in request.session.keys() :
+        return render(request, 'main/result.html')
+    else :
+        return redirect('main_signin')
