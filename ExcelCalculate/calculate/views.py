@@ -19,4 +19,5 @@ def calculate(request) :
         grade_calculate_dic[key] = {}
         grade_calculate_dic[key]['min'] = min(grade_dic[key])
         grade_calculate_dic[key]['max'] = max(grade_dic[key])
+        grade_calculate_dic[key]['avg'] = float(sum(grade_dic[key]))/len(grade_dic[key])
     return HttpResponse("calculate, calculate function!")
