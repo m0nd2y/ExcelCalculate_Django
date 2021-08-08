@@ -20,4 +20,11 @@ def calculate(request) :
         grade_calculate_dic[key]['min'] = min(grade_dic[key])
         grade_calculate_dic[key]['max'] = max(grade_dic[key])
         grade_calculate_dic[key]['avg'] = float(sum(grade_dic[key]))/len(grade_dic[key])
+    grade_list = list(grade_calculate_dic.keys())
+    grade_list.sort()
+    for key in grade_list :
+        print("# grade: " , key)
+        print("min:",grade_calculate_dic[key]['min'],end='')
+        print("/ max:",grade_calculate_dic[key]['max'],end='')
+        print("/ avg:",grade_calculate_dic[key]['avg'],end='')
     return HttpResponse("calculate, calculate function!")
