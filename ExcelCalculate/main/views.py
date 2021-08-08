@@ -46,6 +46,10 @@ def login(request) :
     else :
         return redirect('main_loginFail')
 
+def logout(request) :
+    del request.session['user_name']
+    del request.session['user_email']
+    return redirect('main_signin')
 
 def verifyCode(request):
     return render(request, 'verifyCode.html')
