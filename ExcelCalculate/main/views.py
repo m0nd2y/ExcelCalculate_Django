@@ -36,7 +36,7 @@ def signin(request):
     return render(request, 'signin.html')
 
 def login(request) :
-    loginEmail = request.POST['loginEmail']
+    loginEmail = request.POST.get('loginEmail','')
     loginPW = request.POST['loginPW']
     try :
         user = User.objects.get(user_email = loginEmail)
