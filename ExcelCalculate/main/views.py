@@ -9,11 +9,9 @@ def signup(request):
     return render(request, 'signup.html')
 
 def join(request):
-    print("12341234" + str(request))
     name = request.POST['signupName']
     email = request.POST['signupEmail']
     pw = request.POST['signupPW']
-    print("name = " + str(name) + "email = " + str(email) + "pw = " + str(pw))
     user = User(user_name = name,  user_password = pw, user_email = email)
     user.save()
     return redirect('main_verifyCode')
