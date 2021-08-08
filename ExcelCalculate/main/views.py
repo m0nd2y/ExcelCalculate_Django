@@ -45,7 +45,9 @@ def verify(request):
         response = redirect('main_index')
         response.delete_cookie('code')
         response.delete_cookie('user_id')
-        response.set_cookie('user', user)
+        request.session['user_name'] = user.user_name
+        request.session['user_email'] = user.user_email
+        #response.set_cookie('user', user)
         return response
     else:
         redirect('main_verifyCode')
