@@ -6,7 +6,10 @@ from sendEmail.views import *
 
 # Create your views here.
 def index(request):
-    return render(request, 'index.html')
+    if 'user_name' in request.session.keys() :
+        return render(request, 'index.html')
+    else :
+        return redirect('main_signin')
 
 def signup(request):
     return render(request, 'signup.html')
