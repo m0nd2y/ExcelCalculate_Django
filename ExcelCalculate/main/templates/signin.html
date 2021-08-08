@@ -42,7 +42,7 @@
         <div class="content">
             <div class="mainDiv">
                 <h3>안녕하세요. 로그인을 진행해주세요.</h3><br>
-                <form action="" method="POST">{% csrf_token %}
+                <form action="signin/login" method="POST">{% csrf_token %}
                     <div class="input-group">
                         <span class="input-group-addon" id="basic-addon1">이메일</span>
                         <input type="email" name='loginEmail' class="form-control" placeholder="이메일을 적어주세요." aria-describedby="basic-addon1">
