@@ -1,4 +1,5 @@
 from django.shortcuts import redirect, render
+from random import *
 from .models import *
 
 # Create your views here.
@@ -14,7 +15,11 @@ def join(request):
     pw = request.POST['signupPW']
     user = User(user_name = name,  user_password = pw, user_email = email)
     user.save()
-    return redirect('main_verifyCode')
+    code = randint(1000, 9999)
+    response = redirect('main_verifyCode')
+    response.set_cookie('code',code)
+    response.set_cookie('user_id', user.id)
+    return response
 
 def signin(request):
     return render(request, 'signin.html')
