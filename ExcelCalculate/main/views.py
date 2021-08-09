@@ -4,6 +4,7 @@ from random import *
 from .models import *
 from sendEmail.views import *
 import hashlib
+#finish_project
 
 # Create your views here.
 def index(request):
