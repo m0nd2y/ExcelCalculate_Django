@@ -47,6 +47,7 @@ def login(request) :
         user = User.objects.get(user_email = loginEmail)
     except :
         return redirect('main_loginFail')
+    ##login_pw_enc
     encoded_loginPW = loginPW.encode()
     encrypted_loginPW = hashlib.sha256(encoded_loginPW).hexdigest()
     if user.user_password == encrypted_loginPW:
