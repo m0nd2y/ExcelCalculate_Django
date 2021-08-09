@@ -1,8 +1,8 @@
-from math import e
 from django.http.response import HttpResponse
 from django.shortcuts import redirect, render
 from datetime import datetime
 import pandas as pd
+from .models import *
 
 # Create your views here.
 def calculate(request) :
