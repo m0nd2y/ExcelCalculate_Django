@@ -33,7 +33,6 @@ def join(request):
         return response
     else :
         return HttpResponse("이메일 발송헤 실패했습니다.")
-    return response
 
 def signin(request):
     return render(request, 'signin.html')
