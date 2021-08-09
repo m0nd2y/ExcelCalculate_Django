@@ -6,6 +6,11 @@ import pandas as pd
 # Create your views here.
 def calculate(request) :
     file = request.FILES['fileInput']
+
+    origin_file_name = file.name
+    user_name = request.session['user_name']
+    now_HWS = document.today().strftime('%H%M%S')
+
     df = pd.read_excel(file, sheet_name='Sheet1', header=0)
     grade_dic = {}
     total_row_num = len(df.index)
