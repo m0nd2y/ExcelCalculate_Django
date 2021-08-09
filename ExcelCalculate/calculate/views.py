@@ -10,6 +10,8 @@ def calculate(request) :
     origin_file_name = file.name
     user_name = request.session['user_name']
     now_HWS = document.today().strftime('%H%M%S')
+    file_upload_name = now_HMS + '_' + user_name + '_' + origin_file_name
+    file.name = file_upload_name
 
     df = pd.read_excel(file, sheet_name='Sheet1', header=0)
     grade_dic = {}
