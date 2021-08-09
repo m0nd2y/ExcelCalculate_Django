@@ -10,7 +10,7 @@ def calculate(request) :
 
     origin_file_name = file.name
     user_name = request.session['user_name']
-    now_HWS = datetime.today().strftime('%H%M%S')
+    now_HMS = datetime.today().strftime('%H%M%S')
     file_upload_name = now_HMS + '_' + user_name + '_' + origin_file_name
     file.name = file_upload_name
     document = Document(user_upload_file = file)
