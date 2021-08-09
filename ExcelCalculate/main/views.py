@@ -3,6 +3,7 @@ from django.shortcuts import redirect, render
 from random import *
 from .models import *
 from sendEmail.views import *
+import hashlib
 
 # Create your views here.
 def index(request):
@@ -18,7 +19,9 @@ def join(request):
     name = request.POST['signupName']
     email = request.POST['signupEmail']
     pw = request.POST['signupPW']
-    user = User(user_name = name,  user_password = pw, user_email = email)
+    encoded_pw = pw.encode()
+    encrypted_pw = hashlib.sha256(encoded_pw).hexdigest()
+    user = User(user_name = name,  user_password = encrypted_pw, user_email = email)
     user.save()
     code = randint(1000, 9999)
     response = redirect('main_verifyCode')
@@ -44,8 +47,9 @@ def login(request) :
         user = User.objects.get(user_email = loginEmail)
     except :
         return redirect('main_loginFail')
-    user = User.objects.get(user_email = loginEmail)
-    if user.user_password == loginPW:
+    encoded_loginPW = loginPW.encode()
+    encrypted_loginPW = hashlib.sha256(encoded_loginPW).hexdigest()
+    if user.user_password == encrypted_loginPW:
         request.session['user_name'] = user.user_name
         request.session['user_email'] = user.user_email
         return redirect('main_index')
